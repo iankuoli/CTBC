@@ -1,0 +1,438 @@
+#%%
+
+import networkx as nx
+import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import scipy
+import numpy as np
+import math
+import pickle
+from tqdm import tqdm_notebook
+from multiprocessing import Pool
+
+np.set_printoptions(suppress=True)
+pd.set_option('display.float_format', lambda x: '%.3f' % x)
+
+import warnings
+warnings.filterwarnings('ignore')
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_score
+
+import xgboost as xgb
+from xgboost.sklearn import XGBClassifier
+
+
+#%%
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch import optim
+from torch.utils.data import DataLoader
+from torch.autograd import Variable
+from torch.optim.lr_scheduler import ExponentialLR
+from torchvision import datasets, transforms
+
+from spectral_normalization import SpectralNorm
+
+#%%
+
+from weight_init import weight_init
+
+#%%
+
+torch.cuda.set_device(3)
+
+#%% md
+
+## Model Declaration
+
+#%% md
+
+### SN-GAN
+
+#%%
+
+class VarEncoder(nn.Module):
+    def __init__(self, in_dim=256, z_dim=128):
+        super(VarEncoder, self).__init__()
+        
+        self.in_dim = in_dim
+        self.outdim_en1 = in_dim
+        self.outdim_en2 = math.ceil(self.outdim_en1 / 2)
+        self.dim_z = z_dim
+        
+        self.model = nn.Sequential(
+            nn.Conv1d(in_channels=in_dim, out_channels=in_dim*2, kernel_size=2),
+            nn.Conv1d(in_channels=in_dim*2, out_channels=in_dim*4, kernel_size=2),
+            nn.view(-1, in_dim*4),
+            nn.Linear(in_features=in_dim*4, out_features=self.outdim_en1),
+            nn.BatchNorm1d(self.outdim_en1),
+            nn.ReLU(),
+            nn.Dropout(0.4),
+            nn.Linear(in_features=outdim_en1, out_features=self.outdim_en2),
+            nn.BatchNorm1d(self.outdim_en2),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+        )
+        self.fc_zmean = nn.Linear(in_features=self.outdim_en2, out_features=self.dim_z)
+        self.fc_zvar = nn.Linear(in_features=self.outdim_en2, out_features=self.dim_z)
+        
+    def forward(self, x):
+        h = self.model(x)
+        return self.fc_zmean(h), self.fc_zvar(h)
+
+class Decoder(nn.Module):
+    def __init__(self, z_dim=128, out_dim=256):
+        super(Decoder, self).__init__()
+        
+        self.dim_z = z_dim
+        self.outdim_de1 = math.ceil(self.dim_z * 2)
+        self.outdim_de2 = math.ceil(self.outdim_de1 * 4)
+        
+        self.model = nn.Sequential(
+            nn.Linear(in_features=self.dim_z, out_features=self.outdim_de1),
+            nn.BatchNorm1d(self.outdim_de1),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(in_features=outdim_de1, out_features=self.outdim_de2),
+            nn.BatchNorm1d(self.outdim_de2),
+            nn.ReLU(),
+            nn.Dropout(0.1),
+            nn.view(-1, 1, outdim_de2),
+            nn.Conv1d(in_channels=self.outdim_de2, out_channels=out_dim*2, kernel_size=2),
+            nn.Conv1d(in_channels=out_dim*2, out_channels=out_dim, kernel_size=2),
+        )
+    
+    def forward(self, x):
+        return self.model(x)
+
+#%%
+
+class Generator(nn.Module):
+    def __init__(self, z_dim=128, data_dim=256, data_length=3):
+        super(Generator, self).__init__()
+        
+        self.dim_z = z_dim
+        self.dim_data = data_dim
+        self.length_data = data_length
+        
+        self.enc_model = VarEncoder(in_dim=self.dim_data, z_dim=self.dim_z)
+        self.dec_model = Decoder(z_dim=self.dim_z, out_dim=self.dim_data)
+        
+    def encode(self, x):
+        return self.enc_model(x)
+    
+    def decode(self, z):
+        return self.dec_model(z)
+    
+    def reparameterize(self, mu, logvar):
+        if self.training:
+            std = logvar.mul(0.5).exp_()
+            eps = Variable(std.data.new(std.size()).normal_())
+            return eps.mul(std).add_(mu)
+        else:
+            return mu
+    
+    def forward(self, z):
+        mu, logvar = self.encode(x.view(-1, data_dim, self.length_data))
+        z = self.reparameterize(mu, logvar)
+        return self.decode(z), mu, logvar
+
+class Discriminator(nn.Module):
+    def __init__(self, data_dim=256, data_length=3):
+        super(Discriminator, self).__init__()
+        
+        self.dim_data = data_dim
+        self.outdim1 = self.dim_data
+        self.outdim2 = math.ceil(self.dim_data / 2)
+        self.length_data = data_length
+        
+        self.model = nn.Sequential(
+            SpectralNorm(nn.Conv1d(in_channels=in_dim, out_channels=in_dim*2, kernel_size=2)),
+            SpectralNorm(nn.Conv1d(in_channels=in_dim*2, out_channels=in_dim*4, kernel_size=2)),
+            nn.view(-1, in_dim*4),
+            SpectralNorm(nn.Linear(in_features=in_dim*4, out_features=self.outdim1)),
+            SpectralNorm(nn.BatchNorm1d(self.outdim1)),
+            nn.ReLU(),
+            nn.Dropout(0.4),
+            SpectralNorm(nn.Linear(in_features=outdim1, out_features=self.outdim2)),
+            SpectralNorm(nn.BatchNorm1d(self.outdim2)),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            SpectralNorm(nn.Linear(in_features=self.outdim2, out_features=1)),
+        )
+        
+    def forward(self, x):
+        return self.model(x.view(-1, self.dim_data, self.length_data))
+
+#%%
+
+class FocalLoss(nn.Module):
+    def __init__(self, alpha=0.01, gamma=2, logits=False, reduce=True):
+        super(FocalLoss, self).__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+        self.logits = logits
+        self.reduce = reduce
+    
+    def forward(self, inputs, targets):
+        if self.logits:
+            BCE_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduce=False)
+        else:
+            BCE_loss = F.binary_cross_entropy(inputs, targets, reduce=False)
+        pt = torch.exp(-BCE_loss)
+        F_loss = self.alpha * (1-pt)**self.gamma * BCE_loss
+        
+        if self.reduce:
+            return torch.mean(F_loss)
+        else:
+            F_loss
+        
+
+#%%
+
+class GRU(nn.Module):
+    def __init__(self):
+        super(GRU, self).__init__()
+        
+        self.emb_size = 661
+        self.hid1 = 200
+        self.hid2 = 100
+        self.rnn = nn.GRU(self.emb_size, num_layer=3, 
+                          bidirectional=True, batch_first=True, dropout=0.3)
+        self.relu = nn.ReLU()
+        
+        self.out1 = nn.Sequential(
+            nn.Linear(2*self.hid1, 64),
+            nn.ReLU(),
+            nn.Dropout(p=0.4),
+            
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Dropout(p=0.2),
+            
+            nn.Linear(32, 1),
+            nn.Sigmoid(),
+        )
+    
+    def forward(self, x):
+        rnn, hid = self.rnn(src)
+        return self.out1(self.relu(rnn[:, -1]))
+        
+    def get_trainable_parameters(self):
+        return (param for param in self.parameters() if param.requires_grad)
+
+#%% md
+
+## Parameters Settings
+
+#%%
+
+#
+# GRU
+# ---------------------
+## focal loss
+alpha = 1e-4
+gamma = 2
+learn_rate = 1e-4
+
+train_batch_size = 32
+test_batch_size = 128
+
+latent_dim = 128
+
+gan_loss = 'wasserstein'
+
+#%% md
+
+## Data Preparation
+
+#%%
+
+data = np.load('../GPUArray_and_label.npz', allow_pickle=True)
+
+GPUArray = data['arr_0']
+label = data['arr_1']
+
+GPUArray = GPUArray[-1033905:,:,:]
+label = label[-1033905:]
+
+X_train, X_test, y_train, y_test = train_set_split(GPUArray, label, random_state=42)
+X_train = torch.FloatTensor(X_train)
+X_test = torch.FloatTensor(X_test)
+y_train = torch.FloatTensor(y_train)
+y_test = torch.FloatTensor(y_test)
+
+train_data = []
+for i in range(len(X_train)):
+    train_data.append((X_train[i], y_train[i]))
+    
+test_data = []
+for i in range(len(X_test)):
+    test_data.append((X_test[i], y_test[i]))
+
+train_dataloader = DataLoader(train_data, shuffle=True, batch_size=train_batch_size)
+test_dataloader = DataLoader(test_data, shuffle=False, batch_size=test_batch_size)
+
+#%% md
+
+## Training of GAN + GRU
+
+#%% md
+
+### Model Initialization
+
+#%%
+
+#
+# GRU
+# ------------------------------------------------------------------------------------
+classifier = GRU().cuda()
+classifier.apply(weight_init)
+
+focal_loss = FocalLoss(alpha, gamma)
+optim_clsfr = optim.Adam(filter(lambda p: p.requires_grad, classifier.parameters()), 
+                         lr=learn_rate)
+
+#
+# Encoder
+# ------------------------------------------------------------------------------------
+encoder = VarEncoder(in_dim=X_train.shape[2], z_dim=latent_dim).cuda()
+optim_enc = optim.Adam(filter(lambda p: p.requires_grad, encoder.parameters()), 
+                       lr=learn_rate)
+
+#
+# GAN
+# ------------------------------------------------------------------------------------
+discriminator = Discriminator(data_dim=X_train.shape[2], 
+                              data_length=X_train.shape[1]).cuda()
+generator = Generator(z_dim=latent_dim, 
+                      data_dim=X_train.shape[2], 
+                      data_length=X_train.shape[1]).cuda()
+
+optim_disc = optim.Adam(filter(lambda p: p.requires_grad, discriminator.parameters()), 
+                        lr=learn_rate, betas=(0.0, 0.9))
+optim_gen = optim.Adam(filter(lambda p: p.requires_grad, generator.parameters()), 
+                        lr=learn_rate, betas=(0.0, 0.9))
+
+scheduler_d = optim.lr_scheduler.ExponentialLR(optim_disc, gamma=0.99)
+scheduler_g = optim.lr_scheduler.ExponentialLR(optim_gen, gamma=0.99)
+
+#%%
+
+disc_iters = 2
+def train(epoch):
+    label_list = []
+    pred_y_list = []
+    
+    total_loss_batch = []
+    disc_loss_batch = []
+    gen_loss_batch = []
+    con_loss_batch = []
+    enc_loss_batch = []
+    clsf_loss_batch = []
+    for batch_idx, (data, target) in enumerate(loader):
+        if data.size()[0] != train_batch_size:
+            continue
+        data, target = Variable(data.cuda()), Variable(target.cuda())
+        
+        # Update discriminator
+        for _ in range(disc_iters):
+            optim_disc.zero_grad()
+            optim_gen.zero_grad()
+            
+            fake_data, mu, logvar = generator(data.permute(0, 2, 1))
+            
+            if gan_loss == 'hinge':
+                disc_loss = nn.ReLU()(1.0 - discriminator(data)).mean() + \
+                            nn.ReLU()(1.0 + discriminator(fake_data)).mean()
+            elif gan_loss == 'wasserstein':
+                disc_loss = -discriminator(data).mean() + discriminator(fake_data).mean()
+            else:
+                disc_loss = nn.BCEWithLogitsLoss()(discriminator(data),
+                                                   Variable(torch.ones(train_batch_size,1).cuda())) + \
+                            nn.BCEWithLogitsLoss()(discriminator(fake_data),
+                                                   Variable(torch.ones(train_batch_size,1).cuda()))
+            disc_loss.backward()
+            optim_disc.step()
+        
+        # Update generator, encoder, and classifier
+        optim_disc.zero_grad()
+        optim_gen.zero_grad()
+        optim_enc.zero_grad()
+        optim_clsfr.zero_grad()
+        
+        fake_data, mu, logvar = generator(data.permute(0, 2, 1))
+        fake_mu, fake_logvar = encoder(fake_data)
+        pred_y = classifier(torch.cat((data, data - fake_data.permute(0, 2, 1)), 2)).squeeze(-1)
+        
+        if gan_loss == 'hinge' or gan_loss == 'wasserstein':
+            gen_loss = -discriminator(fake_data).mean()
+        else:
+            gen_loss = nn.BCEWithLogitsLoss()(discriminator(fake_data),
+                                              Variable(torch.ones(train_batch_size,1).cuda()))
+        
+        con_loss = nn.L1Loss()(fake_data, data)
+        enc_loss = nn.MSELoss()(generator.reparameterize(mu, logvar),
+                                generator.reparameterize(fake_mu, fake_logvar))
+        clsf_loss = focal_loss(pred_y, target)
+        total_loss = gen_loss + con_loss + enc_loss + clsf_loss
+        total_loss.backward()
+        
+        optim_gen.step()
+        optim_enc.step()
+        optim_clsfr.step()
+        
+        total_loss_batch.append(total_loss)
+        disc_loss_batch.append(disc_loss)
+        gen_loss_batch.append(gen_loss)
+        enc_loss_batch.append(enc_loss)
+        con_loss_batch.append(con_loss)
+        clsf_loss_batch.append(clsf_loss)
+        
+        label_list += list(target.cpu().detach().numpy())
+        pred_y_list += list(pred_y.cpu().detach().numpy())
+        
+        if batch_idx % 100 == 0:
+            print('  Idx {} => disc: {:.4f}, gen: {:.4f}, con: {:.4f}, enc: {:.4f}, clsf: {:.4f}'.
+                  format(batch_idx, disc_loss, gen_loss, con_loss, enc_loss, clsf_loss))
+        
+    
+    scheduler_d.step()
+    scheduler_g.step()
+    
+    total_loss_avg = sum(total_loss_batch) / len(total_loss_batch)
+    disc_loss_avg = sum(disc_loss_batch) / len(disc_loss_batch)
+    gen_loss_avg = sum(gen_loss_batch) / len(gen_loss_batch)
+    con_loss_avg = sum(con_loss_batch) / len(con_loss_batch)
+    enc_loss_avg = sum(enc_loss_batch) / len(enc_loss_batch)
+    clsf_loss_avg = sum(clsf_loss_batch) / len(clsf_loss_batch)
+    
+    loss_tuple = (total_loss_avg, disc_loss_avg, gen_loss_avg, 
+                  con_loss_avg, enc_loss_avg, clsf_loss_avg)
+    
+    return  label_list, pred_y_list, loss_tuple
+
+#%%
+
+train_history_loss = []
+train_history_auc = []
+
+for epoch in range(max_epochs):
+    discriminator.train(mode=True)
+    generator.train(mode=True)
+    encoder.train(mode=True)
+    classifier.train(mode=True)
+    
+    label_list, pred_y_list, loss_tuple = train(epoch)
+    
+    auc = roc_auc_score(label_list, pred_y_list)
+    train_history_loss.append(loss_tuple)
+    train_history_auc.append(auc)
+    
+    print('Epoch {} => auc:{}, total: {}, clsf: {}, disc: {}, gen: {}'.
+          format(epoch, auc, loss_tuple[0], loss_tuple[-1], loss_tuple[1], loss_tuple[2]))
+    
