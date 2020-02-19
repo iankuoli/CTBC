@@ -1,6 +1,6 @@
 Parameter Setting ----------------------------------------------------------------------
 Model = GRU
-graph_embedding = eigenmap_count_larger8000
+graph_embedding = heter_superv_recur_focal_logisticMF
 alpha = 0.0001
 gamma_pos = 6
 gamma_neg = 2
