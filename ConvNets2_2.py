@@ -106,8 +106,8 @@ class FocalLoss2(nn.Module):
     def __init__(self, alpha=0.01, gamma_pos=3, gamma_neg=2, logits=False, reduce=True):
         super(FocalLoss2, self).__init__()
         self.alpha = alpha
-        self.gamma_pos=3
-        self.gamma_neg=2
+        self.gamma_pos = gamma_pos
+        self.gamma_neg = gamma_neg
         self.logits = logits
         self.reduce = reduce
     
