@@ -1,0 +1,617 @@
+Parameter Setting ----------------------------------------------------------------------
+Model = VAT + GRU
+conv1d use activation = True
+graph_emdeding = Heter_AutoEncoder
+alpha = 0.0001
+gamma_pos = 4
+gamma_neg = 2
+learn_rate = 0.0001
+train_batch_size = 128
+test_batch_size = 256
+max_epochs = 100
+vat_xi = 1e-06
+vat_eps_pos = 1
+vat_eps_neg = 0.01
+vat_ip = 1
+
+
+Epoch 0 -------------------------------------------------------------------------
+Training => auc: 0.535898, clsf_pos: 1.0381538231740706e-05, clsf_neg: 1.2283397154533304e-05, vat_loss: 1.6416393009421881e-06
+            Threshold is set to 0.4629756941070557
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.4628215730190277
+Testing ==> auc: 0.994031, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 1.331140174443135e-05
+Epoch 1 -------------------------------------------------------------------------
+Training => auc: 0.535200, clsf_pos: 4.9293553274765145e-06, clsf_neg: 7.356947662628954e-06, vat_loss: 7.662843017897103e-07
+            Threshold is set to 0.4392193986644745
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.439042329788208
+Testing ==> auc: 0.732001, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 1.114510087063536e-05
+Epoch 2 -------------------------------------------------------------------------
+Training => auc: 0.469035, clsf_pos: 2.9347588679229375e-06, clsf_neg: 4.19011894337018e-06, vat_loss: 3.0408011753024766e-07
+            Threshold is set to 0.41605205671691897
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.4160473346710205
+Testing ==> auc: 0.008248, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 9.313505870522931e-06
+Epoch 3 -------------------------------------------------------------------------
+Training => auc: 0.517584, clsf_pos: 2.225302068836754e-06, clsf_neg: 2.0808329281862825e-06, vat_loss: 1.0667177008372164e-07
+            Threshold is set to 0.39471818344497683
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3944632411003113
+Testing ==> auc: 0.994547, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 7.80798654886894e-06
+Epoch 4 -------------------------------------------------------------------------
+Training => auc: 0.486493, clsf_pos: 1.9486606106511317e-06, clsf_neg: 8.91196066277189e-07, vat_loss: 4.478164683519026e-08
+            Threshold is set to 0.37558193342590335
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3755548596382141
+Testing ==> auc: 0.180469, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 6.644507720920956e-06
+Epoch 5 -------------------------------------------------------------------------
+Training => auc: 0.510152, clsf_pos: 1.8050933476843056e-06, clsf_neg: 4.1544871010046336e-07, vat_loss: 2.5495690891830236e-08
+            Threshold is set to 0.3599764837493897
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.35978543758392334
+Testing ==> auc: 0.003192, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 5.776112175226444e-06
+Epoch 6 -------------------------------------------------------------------------
+Training => auc: 0.565172, clsf_pos: 1.8277465869687148e-06, clsf_neg: 2.2135213839646894e-07, vat_loss: 2.144762589750826e-08
+            Threshold is set to 0.34899456636810305
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3487509787082672
+Testing ==> auc: 0.997111, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 5.2200330173945986e-06
+Epoch 7 -------------------------------------------------------------------------
+Training => auc: 0.478657, clsf_pos: 1.8723055745795136e-06, clsf_neg: 1.47662646554636e-07, vat_loss: 1.7773778893115377e-08
+            Threshold is set to 0.3413059546222687
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.34133830666542053
+Testing ==> auc: 0.997541, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 4.868913038080791e-06
+Epoch 8 -------------------------------------------------------------------------
+Training => auc: 0.482235, clsf_pos: 2.001266921070055e-06, clsf_neg: 1.074442579351853e-07, vat_loss: 1.055102138991515e-08
+            Threshold is set to 0.3354095651378632
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.33558517694473267
+Testing ==> auc: 0.003172, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 4.6086174734227825e-06
+Epoch 9 -------------------------------------------------------------------------
+Training => auc: 0.505927, clsf_pos: 2.018907025558292e-06, clsf_neg: 8.350422575631455e-08, vat_loss: 9.492204355865397e-09
+            Threshold is set to 0.3302861882915497
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3301314413547516
+Testing ==> auc: 0.002676, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 4.371263457869645e-06
+Epoch 10 -------------------------------------------------------------------------
+Training => auc: 0.537061, clsf_pos: 2.1287989966367604e-06, clsf_neg: 6.763963256162242e-08, vat_loss: 3.509944779267471e-09
+            Threshold is set to 0.32644842402839663
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.32645654678344727
+Testing ==> auc: 0.002694, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 4.216357865516329e-06
+Epoch 11 -------------------------------------------------------------------------
+Training => auc: 0.381781, clsf_pos: 2.2097344754001824e-06, clsf_neg: 5.9286339393338494e-08, vat_loss: 4.9936637047665045e-09
+            Threshold is set to 0.3231773211231232
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.32324883341789246
+Testing ==> auc: 0.003470, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 4.084346528543392e-06
+Epoch 12 -------------------------------------------------------------------------
+Training => auc: 0.481809, clsf_pos: 2.1640742033923743e-06, clsf_neg: 5.638761635395895e-08, vat_loss: -2.662422504684514e-10
+            Threshold is set to 0.3207272423973084
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.32074740529060364
+Testing ==> auc: 0.212160, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.983696387876989e-06
+Epoch 13 -------------------------------------------------------------------------
+Training => auc: 0.497324, clsf_pos: 2.197411731685861e-06, clsf_neg: 5.440573147552641e-08, vat_loss: 1.0064330480119565e-09
+            Threshold is set to 0.31861711876297
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.31857356429100037
+Testing ==> auc: 0.230923, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 3.897554506693268e-06
+Epoch 14 -------------------------------------------------------------------------
+Training => auc: 0.536679, clsf_pos: 2.199830987592577e-06, clsf_neg: 5.228321953154591e-08, vat_loss: -1.3567841294914729e-09
+            Threshold is set to 0.3164373172988892
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3164193630218506
+Testing ==> auc: 0.147160, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 3.8134678561618784e-06
+Epoch 15 -------------------------------------------------------------------------
+Training => auc: 0.489379, clsf_pos: 2.250256329716649e-06, clsf_neg: 4.936019237788969e-08, vat_loss: -2.5826798477623925e-09
+            Threshold is set to 0.31476546661758426
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.31471288204193115
+Testing ==> auc: 0.012197, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 3.7479373986570863e-06
+Epoch 16 -------------------------------------------------------------------------
+Training => auc: 0.492314, clsf_pos: 2.3293000595003832e-06, clsf_neg: 4.852663693100112e-08, vat_loss: -6.366812632663255e-10
+            Threshold is set to 0.3129079176654816
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.31290438771247864
+Testing ==> auc: 0.209470, prec: 0.1176, rec: 0.1304, F1score: 0.1237, clsf_loss: 3.6793410345126176e-06
+Epoch 17 -------------------------------------------------------------------------
+Training => auc: 0.483607, clsf_pos: 2.2688966510031605e-06, clsf_neg: 4.847521495321416e-08, vat_loss: -1.33995470275039e-09
+            Threshold is set to 0.31193967001342776
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3119223713874817
+Testing ==> auc: 0.222193, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 3.64235052074946e-06
+Epoch 18 -------------------------------------------------------------------------
+Training => auc: 0.496207, clsf_pos: 2.2795366021455266e-06, clsf_neg: 4.879868242824159e-08, vat_loss: -2.796751052969171e-09
+            Threshold is set to 0.3112495376338959
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3111758828163147
+Testing ==> auc: 0.172306, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 3.614645493144053e-06
+Epoch 19 -------------------------------------------------------------------------
+Training => auc: 0.506739, clsf_pos: 2.36199639402912e-06, clsf_neg: 4.843265344334213e-08, vat_loss: -2.3617741096160216e-09
+            Threshold is set to 0.31019829051399234
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.31019487977027893
+Testing ==> auc: 0.391447, prec: 0.1364, rec: 0.1304, F1score: 0.1333, clsf_loss: 3.5781242786470102e-06
+Epoch 20 -------------------------------------------------------------------------
+Training => auc: 0.492383, clsf_pos: 2.291935288667446e-06, clsf_neg: 4.767441197373046e-08, vat_loss: -1.959612250246323e-09
+            Threshold is set to 0.30923230783843997
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30920785665512085
+Testing ==> auc: 0.234072, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 3.541801333994954e-06
+Epoch 21 -------------------------------------------------------------------------
+Training => auc: 0.497362, clsf_pos: 2.3278048502106685e-06, clsf_neg: 4.769125894199533e-08, vat_loss: 9.415490609399058e-10
+            Threshold is set to 0.30842535035514834
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30843743681907654
+Testing ==> auc: 0.144158, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.513737283356022e-06
+Epoch 22 -------------------------------------------------------------------------
+Training => auc: 0.536792, clsf_pos: 2.3056959435052704e-06, clsf_neg: 4.7880181597292903e-08, vat_loss: 1.8631753084807912e-10
+            Threshold is set to 0.30758707063102725
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3076007068157196
+Testing ==> auc: 0.149785, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.483221917122137e-06
+Epoch 23 -------------------------------------------------------------------------
+Training => auc: 0.523985, clsf_pos: 2.332671783733531e-06, clsf_neg: 4.782040008421973e-08, vat_loss: -1.4869327991107184e-09
+            Threshold is set to 0.3070663942565918
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30704572796821594
+Testing ==> auc: 0.239417, prec: 0.0000, rec: 0.0000, F1score: 0.0000, clsf_loss: 3.4631177641131217e-06
+Epoch 24 -------------------------------------------------------------------------
+Training => auc: 0.487214, clsf_pos: 2.3403463274007663e-06, clsf_neg: 4.760163818673391e-08, vat_loss: -4.815566168048235e-09
+            Threshold is set to 0.30654848949813845
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30655622482299805
+Testing ==> auc: 0.737622, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.44546242558863e-06
+Epoch 25 -------------------------------------------------------------------------
+Training => auc: 0.493090, clsf_pos: 2.3589170723425923e-06, clsf_neg: 4.795624519715602e-08, vat_loss: -5.398882230167601e-09
+            Threshold is set to 0.30602876679801944
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3060508668422699
+Testing ==> auc: 0.761824, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.4273093660885934e-06
+Epoch 26 -------------------------------------------------------------------------
+Training => auc: 0.514693, clsf_pos: 2.356522827540175e-06, clsf_neg: 4.8063395041708645e-08, vat_loss: -5.091705723714313e-09
+            Threshold is set to 0.30545954244041446
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30554643273353577
+Testing ==> auc: 0.808659, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.4092661280737957e-06
+Epoch 27 -------------------------------------------------------------------------
+Training => auc: 0.535362, clsf_pos: 2.315659457963193e-06, clsf_neg: 4.81920068295949e-08, vat_loss: -2.7731315022094805e-09
+            Threshold is set to 0.305152101682663
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3052319884300232
+Testing ==> auc: 0.956190, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.398022499823128e-06
+Epoch 28 -------------------------------------------------------------------------
+Training => auc: 0.565322, clsf_pos: 2.3271852569450857e-06, clsf_neg: 4.8529525287221986e-08, vat_loss: -2.576909130524996e-09
+            Threshold is set to 0.3048352731933594
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30481842160224915
+Testing ==> auc: 0.979435, prec: 0.0103, rec: 0.1957, F1score: 0.0196, clsf_loss: 3.3834287478384795e-06
+Epoch 29 -------------------------------------------------------------------------
+Training => auc: 0.550983, clsf_pos: 2.3342977328866255e-06, clsf_neg: 4.846524248591777e-08, vat_loss: -6.692509046946071e-11
+            Threshold is set to 0.30442757742309573
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30446183681488037
+Testing ==> auc: 0.953609, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3706753583828686e-06
+Epoch 30 -------------------------------------------------------------------------
+Training => auc: 0.525565, clsf_pos: 2.3562670321553014e-06, clsf_neg: 4.855025537153779e-08, vat_loss: 8.988285116195982e-10
+            Threshold is set to 0.3039232029190064
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30416563153266907
+Testing ==> auc: 0.904530, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3602975690882886e-06
+Epoch 31 -------------------------------------------------------------------------
+Training => auc: 0.593260, clsf_pos: 2.3634770514036063e-06, clsf_neg: 4.921911411770452e-08, vat_loss: 9.32563470890102e-10
+            Threshold is set to 0.3038666679134369
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30382877588272095
+Testing ==> auc: 0.953718, prec: 1.0000, rec: 0.0217, F1score: 0.0426, clsf_loss: 3.348335894770571e-06
+Epoch 32 -------------------------------------------------------------------------
+Training => auc: 0.634510, clsf_pos: 2.302545453858329e-06, clsf_neg: 4.899795413848551e-08, vat_loss: 2.516449826295286e-10
+            Threshold is set to 0.3035841120948792
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3035747706890106
+Testing ==> auc: 0.953625, prec: 0.0211, rec: 0.6522, F1score: 0.0409, clsf_loss: 3.339393970236415e-06
+Epoch 33 -------------------------------------------------------------------------
+Training => auc: 0.617758, clsf_pos: 2.3392351522488752e-06, clsf_neg: 4.9023586967678057e-08, vat_loss: -2.2237682528736258e-10
+            Threshold is set to 0.30324457423591616
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30330875515937805
+Testing ==> auc: 0.953614, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3300786981271813e-06
+Epoch 34 -------------------------------------------------------------------------
+Training => auc: 0.639333, clsf_pos: 2.302965640410548e-06, clsf_neg: 4.9163805471152955e-08, vat_loss: -6.373563898876e-10
+            Threshold is set to 0.30324993865394595
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30333951115608215
+Testing ==> auc: 0.953621, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.33120146933652e-06
+Epoch 35 -------------------------------------------------------------------------
+Training => auc: 0.669879, clsf_pos: 2.3012903511698823e-06, clsf_neg: 4.935175468290254e-08, vat_loss: -5.420113802223625e-10
+            Threshold is set to 0.3030759526958466
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30316516757011414
+Testing ==> auc: 0.979497, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.324992803754867e-06
+Epoch 36 -------------------------------------------------------------------------
+Training => auc: 0.611016, clsf_pos: 2.332044459762983e-06, clsf_neg: 4.908743633791346e-08, vat_loss: -6.217951709075464e-10
+            Threshold is set to 0.3028305603733063
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3029269278049469
+Testing ==> auc: 0.951480, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3167730180139188e-06
+Epoch 37 -------------------------------------------------------------------------
+Training => auc: 0.655354, clsf_pos: 2.2760773390473332e-06, clsf_neg: 4.931872155111705e-08, vat_loss: -1.2817521488628358e-09
+            Threshold is set to 0.3027063442935944
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30271583795547485
+Testing ==> auc: 0.997095, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3092462672357215e-06
+Epoch 38 -------------------------------------------------------------------------
+Training => auc: 0.723826, clsf_pos: 2.3025170321488986e-06, clsf_neg: 4.953150778419513e-08, vat_loss: -1.5714668455402148e-09
+            Threshold is set to 0.3024670316448212
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30263209342956543
+Testing ==> auc: 0.997150, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.306348617115873e-06
+Epoch 39 -------------------------------------------------------------------------
+Training => auc: 0.715283, clsf_pos: 2.284849415445933e-06, clsf_neg: 4.933625774583561e-08, vat_loss: -2.3137784743720857e-10
+            Threshold is set to 0.30229224102401736
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3025037348270416
+Testing ==> auc: 0.971380, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3019023248925805e-06
+Epoch 40 -------------------------------------------------------------------------
+Training => auc: 0.732977, clsf_pos: 2.272174924655701e-06, clsf_neg: 4.961189503660535e-08, vat_loss: -1.1369085534118639e-10
+            Threshold is set to 0.30230898992919925
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30237558484077454
+Testing ==> auc: 0.997222, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.297145212854957e-06
+Epoch 41 -------------------------------------------------------------------------
+Training => auc: 0.771639, clsf_pos: 2.2843571514385985e-06, clsf_neg: 4.988126534044568e-08, vat_loss: -2.761712247778547e-10
+            Threshold is set to 0.3023704125156403
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3024614453315735
+Testing ==> auc: 0.997209, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.300259550087503e-06
+Epoch 42 -------------------------------------------------------------------------
+Training => auc: 0.778810, clsf_pos: 2.2394294774130685e-06, clsf_neg: 4.959182930974748e-08, vat_loss: -4.1513534276838016e-10
+            Threshold is set to 0.3024115695228577
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30255797505378723
+Testing ==> auc: 0.997268, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3035105388989905e-06
+Epoch 43 -------------------------------------------------------------------------
+Training => auc: 0.756184, clsf_pos: 2.2202543732419144e-06, clsf_neg: 4.964991262568219e-08, vat_loss: -7.682312008761016e-10
+            Threshold is set to 0.3024849130382538
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3026469945907593
+Testing ==> auc: 0.997317, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.306288135718205e-06
+Epoch 44 -------------------------------------------------------------------------
+Training => auc: 0.778940, clsf_pos: 2.2974995772528928e-06, clsf_neg: 4.9632131293719794e-08, vat_loss: -1.1322123238954873e-09
+            Threshold is set to 0.302573634552002
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30268511176109314
+Testing ==> auc: 0.997503, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.307795395812718e-06
+Epoch 45 -------------------------------------------------------------------------
+Training => auc: 0.801018, clsf_pos: 2.1850642042409163e-06, clsf_neg: 4.934155839464438e-08, vat_loss: 2.3375873459130503e-10
+            Threshold is set to 0.3022788895835877
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3025711476802826
+Testing ==> auc: 0.997610, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.303929815956508e-06
+Epoch 46 -------------------------------------------------------------------------
+Training => auc: 0.793373, clsf_pos: 2.157248218281893e-06, clsf_neg: 4.9636007304343366e-08, vat_loss: -2.0422603885794643e-10
+            Threshold is set to 0.30220050947570803
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3023739457130432
+Testing ==> auc: 0.976241, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.297511284472421e-06
+Epoch 47 -------------------------------------------------------------------------
+Training => auc: 0.791615, clsf_pos: 2.1991791072650813e-06, clsf_neg: 4.948482157374201e-08, vat_loss: 6.311526301594483e-10
+            Threshold is set to 0.30221672193908694
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30245038866996765
+Testing ==> auc: 0.976271, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3002193049469497e-06
+Epoch 48 -------------------------------------------------------------------------
+Training => auc: 0.795104, clsf_pos: 2.149001829820918e-06, clsf_neg: 4.922820551200857e-08, vat_loss: 5.445972561801682e-10
+            Threshold is set to 0.302184595035553
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.302390992641449
+Testing ==> auc: 0.976331, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.298031970189186e-06
+Epoch 49 -------------------------------------------------------------------------
+Training => auc: 0.777985, clsf_pos: 2.1693940652767196e-06, clsf_neg: 4.953958310238704e-08, vat_loss: 2.7592411688814877e-10
+            Threshold is set to 0.3023376597633362
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3024442791938782
+Testing ==> auc: 0.976279, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3003475436998997e-06
+Epoch 50 -------------------------------------------------------------------------
+Training => auc: 0.873058, clsf_pos: 2.064228738163365e-06, clsf_neg: 5.021272997396409e-08, vat_loss: -4.73219130547875e-10
+            Threshold is set to 0.30246402161026004
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3025208115577698
+Testing ==> auc: 0.976367, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.303087623862666e-06
+Epoch 51 -------------------------------------------------------------------------
+Training => auc: 0.831984, clsf_pos: 2.1119410575920483e-06, clsf_neg: 4.968320865827991e-08, vat_loss: -2.671133036979967e-10
+            Threshold is set to 0.302444262670517
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3026053011417389
+Testing ==> auc: 0.976419, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.305499149064417e-06
+Epoch 52 -------------------------------------------------------------------------
+Training => auc: 0.819272, clsf_pos: 2.092758222715929e-06, clsf_neg: 5.0102439530519405e-08, vat_loss: -1.0368846892205852e-09
+            Threshold is set to 0.3025448157062531
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3027648329734802
+Testing ==> auc: 0.976411, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3118210467364406e-06
+Epoch 53 -------------------------------------------------------------------------
+Training => auc: 0.863026, clsf_pos: 1.9945296116929967e-06, clsf_neg: 5.038017647507331e-08, vat_loss: -7.822320569061958e-10
+            Threshold is set to 0.30258484022521975
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3027850389480591
+Testing ==> auc: 0.976420, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3128233098977944e-06
+Epoch 54 -------------------------------------------------------------------------
+Training => auc: 0.867718, clsf_pos: 2.0498473531915806e-06, clsf_neg: 5.042100070795641e-08, vat_loss: -2.889652128690301e-10
+            Threshold is set to 0.3026940061321259
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3029443025588989
+Testing ==> auc: 0.976463, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3174310374306515e-06
+Epoch 55 -------------------------------------------------------------------------
+Training => auc: 0.867029, clsf_pos: 1.979454054890084e-06, clsf_neg: 5.0453561328822616e-08, vat_loss: 9.50814357802976e-11
+            Threshold is set to 0.302890343832016
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30304962396621704
+Testing ==> auc: 0.977100, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3221315334230894e-06
+Epoch 56 -------------------------------------------------------------------------
+Training => auc: 0.859808, clsf_pos: 1.9649698970169993e-06, clsf_neg: 5.088316967771789e-08, vat_loss: 2.8129318319081165e-10
+            Threshold is set to 0.302653504776001
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30284789204597473
+Testing ==> auc: 0.977140, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3141516269097337e-06
+Epoch 57 -------------------------------------------------------------------------
+Training => auc: 0.890383, clsf_pos: 1.9276817511126865e-06, clsf_neg: 5.068515562811626e-08, vat_loss: -1.0810497635960203e-10
+            Threshold is set to 0.3026147021522522
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30292823910713196
+Testing ==> auc: 0.998665, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3149522096209694e-06
+Epoch 58 -------------------------------------------------------------------------
+Training => auc: 0.881441, clsf_pos: 1.9603498913056683e-06, clsf_neg: 5.034641503698367e-08, vat_loss: -7.275865465672382e-10
+            Threshold is set to 0.30260298983955386
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3028075695037842
+Testing ==> auc: 0.997999, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.309940211693174e-06
+Epoch 59 -------------------------------------------------------------------------
+Training => auc: 0.917576, clsf_pos: 1.992725174204679e-06, clsf_neg: 5.054861418329892e-08, vat_loss: -1.186598153068985e-09
+            Threshold is set to 0.3025745286216736
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30281195044517517
+Testing ==> auc: 0.997408, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.310109832455055e-06
+Epoch 60 -------------------------------------------------------------------------
+Training => auc: 0.919538, clsf_pos: 1.9044259715883527e-06, clsf_neg: 5.105273359617968e-08, vat_loss: -1.424405593475342e-10
+            Threshold is set to 0.3026489450206757
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.302954763174057
+Testing ==> auc: 0.997385, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.314599098303006e-06
+Epoch 61 -------------------------------------------------------------------------
+Training => auc: 0.941219, clsf_pos: 1.8611935956869274e-06, clsf_neg: 5.08517459252289e-08, vat_loss: 9.664905681328051e-11
+            Threshold is set to 0.30281351344490054
+            prec: 0.0003, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3030672073364258
+Testing ==> auc: 0.997385, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.317122036605724e-06
+Epoch 62 -------------------------------------------------------------------------
+Training => auc: 0.919862, clsf_pos: 1.95918619283475e-06, clsf_neg: 5.0099711046414086e-08, vat_loss: 3.0019262076130815e-10
+            Threshold is set to 0.30295981304550174
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3032878339290619
+Testing ==> auc: 0.997306, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.323569671920268e-06
+Epoch 63 -------------------------------------------------------------------------
+Training => auc: 0.903329, clsf_pos: 1.906496777337452e-06, clsf_neg: 5.010327441823392e-08, vat_loss: 3.519927127548783e-10
+            Threshold is set to 0.30299852626228335
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3030659556388855
+Testing ==> auc: 0.997126, prec: 0.0131, rec: 1.0000, F1score: 0.0258, clsf_loss: 3.317196842544945e-06
+Epoch 64 -------------------------------------------------------------------------
+Training => auc: 0.904665, clsf_pos: 1.914736685648677e-06, clsf_neg: 5.034286942873223e-08, vat_loss: 3.256814540275599e-10
+            Threshold is set to 0.30284379260444644
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3032061457633972
+Testing ==> auc: 0.997340, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.321170424896991e-06
+Epoch 65 -------------------------------------------------------------------------
+Training => auc: 0.940767, clsf_pos: 1.8486716726329178e-06, clsf_neg: 5.08240098895385e-08, vat_loss: 4.3786541059631645e-10
+            Threshold is set to 0.30301840441131594
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30341029167175293
+Testing ==> auc: 0.998147, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3263390832871664e-06
+Epoch 66 -------------------------------------------------------------------------
+Training => auc: 0.975144, clsf_pos: 1.8917147599495365e-06, clsf_neg: 5.002298664180671e-08, vat_loss: 4.712856771504903e-10
+            Threshold is set to 0.303134097026825
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30350279808044434
+Testing ==> auc: 0.997285, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.329803121232544e-06
+Epoch 67 -------------------------------------------------------------------------
+Training => auc: 0.992569, clsf_pos: 1.8164548691856908e-06, clsf_neg: 5.0546596241929365e-08, vat_loss: 7.793481415774295e-10
+            Threshold is set to 0.3034307493438721
+            prec: 0.0006, rec: 1.0000, F1score: 0.0012
+            Min. Probailities on test set with label 1: 0.3036198914051056
+Testing ==> auc: 0.997115, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3355954656144604e-06
+Epoch 68 -------------------------------------------------------------------------
+Training => auc: 0.994766, clsf_pos: 1.8174737306253519e-06, clsf_neg: 5.0108301508089426e-08, vat_loss: 1.2648342373466903e-09
+            Threshold is set to 0.3035349084606171
+            prec: 0.0005, rec: 1.0000, F1score: 0.0010
+            Min. Probailities on test set with label 1: 0.30363160371780396
+Testing ==> auc: 0.998436, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.338825081300456e-06
+Epoch 69 -------------------------------------------------------------------------
+Training => auc: 0.990035, clsf_pos: 1.8039594351648702e-06, clsf_neg: 5.01026242716307e-08, vat_loss: 1.1047213144266266e-09
+            Threshold is set to 0.3033293022384644
+            prec: 0.0004, rec: 1.0000, F1score: 0.0008
+            Min. Probailities on test set with label 1: 0.3031025826931
+Testing ==> auc: 0.999697, prec: 0.0182, rec: 0.9783, F1score: 0.0358, clsf_loss: 3.3208050354005536e-06
+Epoch 70 -------------------------------------------------------------------------
+Training => auc: 0.985878, clsf_pos: 1.8963436332342098e-06, clsf_neg: 4.869798786444335e-08, vat_loss: 9.38751187895548e-10
+            Threshold is set to 0.30307726399803164
+            prec: 0.0002, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.30335918068885803
+Testing ==> auc: 0.999260, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.327764943605871e-06
+Epoch 71 -------------------------------------------------------------------------
+Training => auc: 0.991018, clsf_pos: 1.822511876525823e-06, clsf_neg: 4.964422828379611e-08, vat_loss: 9.706728754110827e-10
+            Threshold is set to 0.30322398083114627
+            prec: 0.0003, rec: 1.0000, F1score: 0.0007
+            Min. Probailities on test set with label 1: 0.3032347559928894
+Testing ==> auc: 0.999450, prec: 0.0137, rec: 1.0000, F1score: 0.0270, clsf_loss: 3.325029638290289e-06
+Epoch 72 -------------------------------------------------------------------------
+Training => auc: 0.995537, clsf_pos: 1.8244501234221389e-06, clsf_neg: 4.875105119594991e-08, vat_loss: 1.2888278222433769e-09
+            Threshold is set to 0.30339111225509646
+            prec: 0.0011, rec: 1.0000, F1score: 0.0023
+            Min. Probailities on test set with label 1: 0.3034696877002716
+Testing ==> auc: 0.999565, prec: 0.0095, rec: 1.0000, F1score: 0.0187, clsf_loss: 3.3328608424199047e-06
+Epoch 73 -------------------------------------------------------------------------
+Training => auc: 0.996842, clsf_pos: 1.8147156879422255e-06, clsf_neg: 4.968474343058915e-08, vat_loss: 1.0186073096107862e-09
+            Threshold is set to 0.3033846749534607
+            prec: 0.0012, rec: 1.0000, F1score: 0.0025
+            Min. Probailities on test set with label 1: 0.3033500015735626
+Testing ==> auc: 0.999363, prec: 0.0182, rec: 0.9783, F1score: 0.0358, clsf_loss: 3.328391812829068e-06
+Epoch 74 -------------------------------------------------------------------------
+Training => auc: 0.991417, clsf_pos: 1.8220048332295846e-06, clsf_neg: 4.953553656150689e-08, vat_loss: 9.57324330919107e-10
+            Threshold is set to 0.3030892743339539
+            prec: 0.0003, rec: 1.0000, F1score: 0.0005
+            Min. Probailities on test set with label 1: 0.3030075132846832
+Testing ==> auc: 0.999731, prec: 0.0182, rec: 0.9783, F1score: 0.0358, clsf_loss: 3.317305527161807e-06
+Epoch 75 -------------------------------------------------------------------------
+Training => auc: 0.999142, clsf_pos: 1.7620973267185036e-06, clsf_neg: 4.96200982524897e-08, vat_loss: 1.3630008233178614e-09
+            Threshold is set to 0.30350719230079654
+            prec: 0.0564, rec: 1.0000, F1score: 0.1068
+            Min. Probailities on test set with label 1: 0.3033472001552582
+Testing ==> auc: 0.999823, prec: 0.0182, rec: 0.9783, F1score: 0.0358, clsf_loss: 3.329147375552566e-06
+Epoch 76 -------------------------------------------------------------------------
+Training => auc: 0.998749, clsf_pos: 1.7697581142783747e-06, clsf_neg: 4.915326812238163e-08, vat_loss: 2.1573107744643494e-09
+            Threshold is set to 0.30362997786903384
+            prec: 0.0029, rec: 1.0000, F1score: 0.0059
+            Min. Probailities on test set with label 1: 0.30365699529647827
+Testing ==> auc: 0.999822, prec: 0.0163, rec: 1.0000, F1score: 0.0321, clsf_loss: 3.3386847917427076e-06
+Epoch 77 -------------------------------------------------------------------------
+Training => auc: 0.999402, clsf_pos: 1.7484542240708834e-06, clsf_neg: 4.937362874102291e-08, vat_loss: 2.6386142160106374e-09
+            Threshold is set to 0.30409018533134463
+            prec: 0.0569, rec: 1.0000, F1score: 0.1076
+            Min. Probailities on test set with label 1: 0.30376753211021423
+Testing ==> auc: 0.999822, prec: 0.0186, rec: 0.9783, F1score: 0.0366, clsf_loss: 3.3436417652410455e-06
+Epoch 78 -------------------------------------------------------------------------
+Training => auc: 0.995520, clsf_pos: 1.7316974663117435e-06, clsf_neg: 4.862902258651047e-08, vat_loss: 2.7465343332977454e-09
+            Threshold is set to 0.3037949635257721
+            prec: 0.0005, rec: 1.0000, F1score: 0.0011
+            Min. Probailities on test set with label 1: 0.30383777618408203
+Testing ==> auc: 0.999821, prec: 0.0105, rec: 1.0000, F1score: 0.0207, clsf_loss: 3.3468591027485672e-06
+Epoch 79 -------------------------------------------------------------------------
+Training => auc: 0.997242, clsf_pos: 1.720987825137854e-06, clsf_neg: 4.888600102503915e-08, vat_loss: 3.063504339095857e-09
+            Threshold is set to 0.3037325872650147
+            prec: 0.0008, rec: 1.0000, F1score: 0.0017
+            Min. Probailities on test set with label 1: 0.30372554063796997
+Testing ==> auc: 0.999820, prec: 0.0183, rec: 0.9783, F1score: 0.0359, clsf_loss: 3.3437422644055914e-06
+Epoch 80 -------------------------------------------------------------------------
+Training => auc: 0.998943, clsf_pos: 1.7210287523994339e-06, clsf_neg: 4.832838484958302e-08, vat_loss: 2.5972690664843867e-09
+            Threshold is set to 0.30377672450447085
+            prec: 0.0026, rec: 1.0000, F1score: 0.0052
+            Min. Probailities on test set with label 1: 0.3034747838973999
+Testing ==> auc: 0.978291, prec: 0.0451, rec: 0.9783, F1score: 0.0863, clsf_loss: 3.335964038342354e-06
+Epoch 81 -------------------------------------------------------------------------
+Training => auc: 0.999732, clsf_pos: 1.7734372477207216e-06, clsf_neg: 4.785826845932206e-08, vat_loss: 3.229855938258197e-09
+            Threshold is set to 0.3041595651378632
+            prec: 0.0911, rec: 1.0000, F1score: 0.1669
+            Min. Probailities on test set with label 1: 0.3039531409740448
+Testing ==> auc: 0.999823, prec: 0.0424, rec: 0.9783, F1score: 0.0813, clsf_loss: 3.352514795551542e-06
+Epoch 82 -------------------------------------------------------------------------
+Training => auc: 0.999818, clsf_pos: 1.688663246568467e-06, clsf_neg: 4.8272440267282946e-08, vat_loss: 2.734626303180221e-09
+            Threshold is set to 0.30438904302024844
+            prec: 0.1440, rec: 1.0000, F1score: 0.2517
+            Min. Probailities on test set with label 1: 0.30379629135131836
+Testing ==> auc: 0.999826, prec: 0.0472, rec: 0.9783, F1score: 0.0900, clsf_loss: 3.347068741277326e-06
+Epoch 83 -------------------------------------------------------------------------
+Training => auc: 0.999816, clsf_pos: 1.7033207768690772e-06, clsf_neg: 4.756976679232139e-08, vat_loss: 3.81347708966473e-09
+            Threshold is set to 0.30445198552513125
+            prec: 0.1457, rec: 1.0000, F1score: 0.2544
+            Min. Probailities on test set with label 1: 0.3038332462310791
+Testing ==> auc: 0.999669, prec: 0.0717, rec: 0.9565, F1score: 0.1333, clsf_loss: 3.3484611776657403e-06
+Epoch 84 -------------------------------------------------------------------------
+Training => auc: 0.995817, clsf_pos: 1.6466876786580542e-06, clsf_neg: 4.7172807882134293e-08, vat_loss: 4.486412574777887e-09
+            Threshold is set to 0.3038907183876038
+            prec: 0.0005, rec: 1.0000, F1score: 0.0010
+            Min. Probailities on test set with label 1: 0.30403566360473633
+Testing ==> auc: 0.978308, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.3555245408933843e-06
+Epoch 85 -------------------------------------------------------------------------
+Training => auc: 0.999843, clsf_pos: 1.6684120964782778e-06, clsf_neg: 4.6129617459200745e-08, vat_loss: 6.3119180992998736e-09
+            Threshold is set to 0.304985447095871
+            prec: 0.2466, rec: 1.0000, F1score: 0.3956
+            Min. Probailities on test set with label 1: 0.3041878044605255
+Testing ==> auc: 0.978256, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.3609453566896264e-06
+Epoch 86 -------------------------------------------------------------------------
+Training => auc: 0.993425, clsf_pos: 1.6192603879972012e-06, clsf_neg: 4.657983865286042e-08, vat_loss: 5.608085995589818e-09
+            Threshold is set to 0.30412794487380984
+            prec: 0.0003, rec: 1.0000, F1score: 0.0006
+            Min. Probailities on test set with label 1: 0.3040197789669037
+Testing ==> auc: 0.978239, prec: 0.0695, rec: 0.9565, F1score: 0.1296, clsf_loss: 3.3549997624504613e-06
+Epoch 87 -------------------------------------------------------------------------
+Training => auc: 0.993671, clsf_pos: 1.5738479532956262e-06, clsf_neg: 4.637714567934381e-08, vat_loss: 7.874498386684081e-09
+            Threshold is set to 0.30405963795089724
+            prec: 0.0003, rec: 1.0000, F1score: 0.0007
+            Min. Probailities on test set with label 1: 0.3041265308856964
+Testing ==> auc: 0.978235, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.358711182954721e-06
+Epoch 88 -------------------------------------------------------------------------
+Training => auc: 0.994665, clsf_pos: 1.633579131521401e-06, clsf_neg: 4.618338067530203e-08, vat_loss: 4.921523633072411e-09
+            Threshold is set to 0.3040321900119782
+            prec: 0.0004, rec: 1.0000, F1score: 0.0008
+            Min. Probailities on test set with label 1: 0.3039120137691498
+Testing ==> auc: 0.978306, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.351214672875358e-06
+Epoch 89 -------------------------------------------------------------------------
+Training => auc: 0.992365, clsf_pos: 1.6295109617203707e-06, clsf_neg: 4.6189740032787086e-08, vat_loss: 4.3093089097112625e-09
+            Threshold is set to 0.3037027551403046
+            prec: 0.0003, rec: 1.0000, F1score: 0.0006
+            Min. Probailities on test set with label 1: 0.3036833703517914
+Testing ==> auc: 0.978270, prec: 0.0777, rec: 0.9565, F1score: 0.1438, clsf_loss: 3.3430349049012875e-06
+Epoch 90 -------------------------------------------------------------------------
+Training => auc: 0.995491, clsf_pos: 1.5503381973758223e-06, clsf_neg: 4.597553271423749e-08, vat_loss: 7.982487559843321e-09
+            Threshold is set to 0.30387283699417117
+            prec: 0.0005, rec: 1.0000, F1score: 0.0009
+            Min. Probailities on test set with label 1: 0.3040209412574768
+Testing ==> auc: 0.956627, prec: 0.0001, rec: 1.0000, F1score: 0.0002, clsf_loss: 3.354970431246329e-06
+Epoch 91 -------------------------------------------------------------------------
+Training => auc: 0.998088, clsf_pos: 1.658660721659544e-06, clsf_neg: 4.506660289393949e-08, vat_loss: 5.0165676057645214e-09
+            Threshold is set to 0.3040215207805634
+            prec: 0.0011, rec: 1.0000, F1score: 0.0023
+            Min. Probailities on test set with label 1: 0.3036951720714569
+Testing ==> auc: 0.978234, prec: 0.3607, rec: 0.9565, F1score: 0.5238, clsf_loss: 3.34342348651262e-06
+Epoch 92 -------------------------------------------------------------------------
+Training => auc: 0.996694, clsf_pos: 1.4737662468178314e-06, clsf_neg: 4.52463027045269e-08, vat_loss: 1.0120928983781141e-08
+            Threshold is set to 0.3039726151695252
+            prec: 0.0006, rec: 1.0000, F1score: 0.0013
+            Min. Probailities on test set with label 1: 0.30392569303512573
+Testing ==> auc: 0.971707, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.3516121220600326e-06
+Epoch 93 -------------------------------------------------------------------------
+Training => auc: 0.994534, clsf_pos: 1.588657141837757e-06, clsf_neg: 4.494281924394272e-08, vat_loss: 7.020474868113524e-09
+            Threshold is set to 0.30390532152557376
+            prec: 0.0004, rec: 1.0000, F1score: 0.0008
+            Min. Probailities on test set with label 1: 0.30375832319259644
+Testing ==> auc: 0.956654, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.345669256304973e-06
+Epoch 94 -------------------------------------------------------------------------
+Training => auc: 0.999218, clsf_pos: 1.6639980913168984e-06, clsf_neg: 4.458221880554447e-08, vat_loss: 5.795824264964722e-09
+            Threshold is set to 0.3038565053215027
+            prec: 0.0031, rec: 1.0000, F1score: 0.0062
+            Min. Probailities on test set with label 1: 0.3037106394767761
+Testing ==> auc: 0.978308, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.3439530398027273e-06
+Epoch 95 -------------------------------------------------------------------------
+Training => auc: 0.992383, clsf_pos: 1.6089977634692332e-06, clsf_neg: 4.508471818098769e-08, vat_loss: 5.946746650664636e-09
+            Threshold is set to 0.3037198914756775
+            prec: 0.0003, rec: 1.0000, F1score: 0.0006
+            Min. Probailities on test set with label 1: 0.30372118949890137
+Testing ==> auc: 0.999873, prec: 0.0205, rec: 1.0000, F1score: 0.0402, clsf_loss: 3.34424930770183e-06
+Epoch 96 -------------------------------------------------------------------------
+Training => auc: 0.995573, clsf_pos: 1.6346865550076473e-06, clsf_neg: 4.5017387151347066e-08, vat_loss: 6.296641874570241e-09
+            Threshold is set to 0.3037417961826325
+            prec: 0.0005, rec: 1.0000, F1score: 0.0010
+            Min. Probailities on test set with label 1: 0.30343183875083923
+Testing ==> auc: 0.956651, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.3342171263939235e-06
+Epoch 97 -------------------------------------------------------------------------
+Training => auc: 0.995856, clsf_pos: 1.6406569329774356e-06, clsf_neg: 4.528888908339468e-08, vat_loss: 3.8054244200225185e-09
+            Threshold is set to 0.3034051193466187
+            prec: 0.0005, rec: 1.0000, F1score: 0.0010
+            Min. Probailities on test set with label 1: 0.3033943474292755
+Testing ==> auc: 0.999872, prec: 0.0280, rec: 0.9783, F1score: 0.0544, clsf_loss: 3.3322955914627528e-06
+Epoch 98 -------------------------------------------------------------------------
+Training => auc: 0.994630, clsf_pos: 1.5626707181581878e-06, clsf_neg: 4.604794767715248e-08, vat_loss: 5.379238832148303e-09
+            Threshold is set to 0.30341027514839175
+            prec: 0.0004, rec: 1.0000, F1score: 0.0008
+            Min. Probailities on test set with label 1: 0.3030862510204315
+Testing ==> auc: 0.956681, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.3221081139345188e-06
+Epoch 99 -------------------------------------------------------------------------
+Training => auc: 0.997290, clsf_pos: 1.5801271047166665e-06, clsf_neg: 4.58940512260142e-08, vat_loss: 3.932920211724422e-09
+            Threshold is set to 0.3032255603542328
+            prec: 0.0008, rec: 1.0000, F1score: 0.0016
+            Min. Probailities on test set with label 1: 0.3031304180622101
+Testing ==> auc: 0.956607, prec: 0.3667, rec: 0.9565, F1score: 0.5301, clsf_loss: 3.3236863146157702e-06
