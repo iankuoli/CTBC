@@ -1,0 +1,55 @@
+
+training_date  = [(2018, 5), (2018, 6), (2018, 7), (2018, 8),
+                  (2018, 9), (2018,10), (2018,11)]
+testing_date   = [(2018,12), (2019, 1), (2019, 2),
+                  (2019, 3), (2019, 4), (2019, 5), (2019, 6)]
+
+training data shape = (482489, 3, 661)	
+testing data shape  = (482489, 3, 661)
+
+######################Threshold Exp##########################
+1st
+
+	Training Treshold: 0.2939210832118988
+	Total Positve: 109
+	Total Candidate: 110
+
+	Testing Treshold: 0.2693917751312256
+	Total Positve: 46
+	Total Candidate: 1372
+
+2nd
+	Training Treshold: 0.2830727994441986
+	Total Positve: 109
+	Total Candidate: 112
+
+	Testing Treshold: 0.2690467834472656
+	Total Positve: 46
+	Total Candidate: 1315
+
+3rd
+	Training Treshold: 0.29059654474258423
+	Total Positve: 109
+	Total Candidate: 114
+
+	Testing Treshold: 0.2691945731639862
+	Total Positve: 46
+	Total Candidate: 1254
+
+4th
+	Training Treshold: 0.28892281651496887
+	Total Positve: 109
+	Total Candidate: 112
+
+	Testing Treshold: 0.2692015469074249
+	Total Positve: 46
+	Total Candidate: 1164
+
+5th
+	Training Treshold: 0.278158575296402
+	Total Positve: 109
+	Total Candidate: 111
+
+	Testing Treshold: 0.269040584564209
+	Total Positve: 46
+	Total Candidate: 1520
