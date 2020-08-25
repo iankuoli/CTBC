@@ -302,7 +302,7 @@ def update_params(input_pkg):
         q_t = (vec_one - y_t) * (vec_one - pred_t) + y_t * pred_t + 1e-10
         q_t[q_t > 1] = 1.
         z_t = focal_alpha * (-focal_gamma * (1 - q_t) ** (focal_gamma - 1) * np.log(q_t) + \
-                             1/q_t + (1 - q_t) ** focal_gamma) * \
+                             1/q_t * (1 - q_t) ** focal_gamma) * \
               (2 * y_t - vec_one) * pred_t * (vec_one - pred_t)
         
         # Compute the gradient w.r.t. V_t
@@ -316,7 +316,7 @@ def update_params(input_pkg):
             q_t_plus = (vec_one - y_t_plus) * (vec_one - pred_t_plus) + y_t_plus * pred_t_plus + 1e-10
             q_t_plus[q_t_plus > 1] = 1.
             z_t_plus = focal_alpha * (-focal_gamma * (1 - q_t_plus) ** (focal_gamma - 1) * np.log(q_t_plus) + \
-                                      1/q_t_plus + (1 - q_t_plus) ** focal_gamma) * \
+                                      1/q_t_plus * (1 - q_t_plus) ** focal_gamma) * \
                        (2 * y_t_plus - vec_one) * pred_t_plus * (vec_one - pred_t_plus)
             grad_V_t += norm_time * -(V_t_plus - V_t) + \
                         norm_pred * -(np.dot(np.cos(theta) * z_t + np.sin(theta) * z_t_plus, w1.T) + 
